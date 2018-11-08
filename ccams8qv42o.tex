@@ -1,0 +1,182 @@
+\section{Research Project}
+\subsection{Introduction}
+``Digitisation'' is a buzz-word in present days. It describes the process of transforming analog signals or texts to a digital representation. There are several reasons why we see more and more libraries and archives digitising their material. One is the preservation of delicate documents, yet another is to make certain data more popular, or more accessible to different user groups. The latter reason would apply, for example, to text collections. Libraries and archives have collected huge amounts of historical documents over the past centuries. The majority of these collections are stored in shelves, doomed to fall into oblivion. Nevertheless, or rather therefore, more and more of these collections are nowadays digitised.
+
+Among written texts, it is mainly books which get to be digitised. However, there is yet another text category which currently undergoes massive digitisation processes: newspapers \cite{lansdall-welfarecontent2017,prestondigital2016,binghamdigitization2010}. This process offers new perspectives to scholars from many different fields, i.~e.~historians, digital humanists, sociologists, and also linguists. Interestingly, newspaper texts as a scientific resource provide each of the aforementioned group of scholars data to work with. Newspapers can be seen as a mirror of society. They report daily not only about local, but also about global events and are part of the cultural, social, and political heritage. Most newspaper archives cover several centuries. As such, they serve as an important primary source for historians who want to gain new insights on our past, sociologists who wish to shed light on social movements, or linguists who seek to examine how language has changed over time.
+
+However, the mere digitisation of newspaper archives does not suffice. The digitised texts must be carefully processed in order to make the information they convey available to researchers. A very basic step is, for example, the structuring of the data into topics. Newspapers contain a myriad of information and they deal with a vast amount of topics. The aim of topic modeling is thus to try to determine which topics are present in a specific text. To know what texts are about is vital, especially if one deals with large text collections.
+
+While identifying topics is a first step into making the data more accessible to users, the linking of topics is of interest as well. Since newspaper data is diachronic by nature, it is interesting to be able to put events into perspective. The capability of relating topics to each other comes in handy when users wish to relate specific articles. If one is, for instance, interested in the discourse of women's suffrage in Switzerland, there might be other topics directly related to this issue which might have had an influence. In order to detect such relationships, it is necessary to find a way to connect topics with each other.
+
+Since Switzerland is a multilingual country with four official languages (German, French, Italian, Rumansh), the issue of linking topics cross-linguistically quickly arises. After all, it could be possible that the media in the different language regions of Switzerland treated the women's suffrage differently, which is why the modeling of topic relations across languages is of particular interest. Additionally, such a linking over languages and time would also bring the attitudes of different newspapers from different regions to light.
+
+Hence, this research project will not only be occupied with topic modeling \textit{per se}, but also with finding cross-lingual topic relations, while at the same time putting them into a historical perspective.
+
+\subsection{Problem statement}
+This research project will mainly deal with Swiss newspaper texts. The nature of the data treated in this research project puts additional complexities to the task of topic modeling. On one hand, the newspaper data is diachronic and covers a time period of roughly 200 years. Hence, not only the problem of different orthographies arises, but also the issue of meaning changes, which directly influence topic modeling techniques. On the other hand, the multilinguality (German, French, a small portion of Italian) of the texts adds an additional twist. To summarise, this research project faces the following challenges and sub-challenges:
+
+\begin{itemize}
+	\item diachronicity
+	\begin{itemize}
+		\item meaning changes of words
+		\item orthographic changes
+		\item normalisation (specification needed)
+	\end{itemize}
+	\item multilinguality
+	
+\end{itemize}
+
+\paragraph{Research question}
+How can cross-lingual topic relations be modeled across time?
+
+\paragraph{Significance}
+
+\section{Background and State-of-the-Art}
+
+\subsection{Topic modeling}
+Topic modeling is a well researched field. The most often used techniques are Latent Semantic Analysis (LSA) \cite{deerwesterscottindexing1990}, Probabilistic Latent Semantic Indexing \cite{hofmannprobabilistic1999}, and Latent Dirichlet Allocation (LDA) \cite{bleidynamic2006}. In principle, LSA and LDA represent probabilistic methods to identify possible topics in a text. They take into account the distribution of words in a text and try to narrow down the topic to words which represent the contents of a text best.
+
+Since the words which describe a topic are expected to be semantically related, techniques like LDA profit from the advent of word embeddings \cite{mikolovdistributed2013,bengioneural2003}, which capture the semantic similarity of words in a low-dimensional vector space. \citeA{dasgaussian2015} successfully incorporate word embeddings into Gaussian LDA and report that their technique outperforms standard LDA especially when dealing with out-of-vocabulary words.
+
+With the integration of word embeddings into standard LSA and LDA methods, (deep) neural network techniques find their way into the field of topic modeling. \cite{ganscalable2015} introduce Deep Poisson Factor Analysis, which employs sigmoid belief networks and restricted Boltzmann machines in order to assign topics to text. They find that their method is superior to topic modeling using LDA.
+
+\subsection{Relations between topics}
+All the texts in a newspaper archive as such hypothetically represent a huge document network. Similar to an online social network, e.g., Facebook, where some persons are linked with each other while others are not, there exist hidden links between documents, or newspaper articles. That is, for human readers these links are obvious, whereas they are obscure for the machine. There are several ways how documents relate with each other:
+\begin{enumerate}
+	\item The documents deal with similar topics. We could, for example, find all newspaper articles about the women's suffrage in Switzerland. These relations could be called \textit{topical relations}. We can identify similar documents by applying topic modeling techniques to a corpus. 
+	\item The newspaper reports on an event in several subsequent articles, in which case there is a topical and a \textit{temporal relation}. In order to be able to provide the ``big picture'' of a story, it is necessary to find the relations between articles. I further highlight the temporal aspect in  section \ref{timeinfluence}.
+\end{enumerate}
+
+\citeA{changhierarchical2010} introduce a procedure which links documents based on the latent representation of topics. They use their framework, a hierarchical probabilistic model of networks, to analyse linked corpora (i.e.~citation networks, linked web pages, social networks, and geographically tagged data). \citeA{wangrelational2017} claim, though, that features learned by relational topic models are not effective enough to represent the nodes in a network, which in our case would be news articles. This is why they propose a relational deep learning method which ``jointly models high-dimensional node attributes and link structures with layers of latent variables'' (p.~2688).
+
+Newspaper archives, however, are usually unavailable as linked data. There are only rarely direct references to other articles such as quotations in citation networks, or hyperlinks in text collections like Wikipedia. Hence,  regarding the enormous corpora we are going to work with, we can only guess at the number of relations present in a corpus. The challenge will thus be to find an automatic way to relate articles with each other. That is, there will be a need to develop a method which will be able to find relations between topics without training data.
+
+\citeA{newmanprobabilistic2006} propose to use named entities in order to relate topics to each other. They build social networks using persons who share the same topics. Since according to the Sinergia proposal the EPFL will be responsible for named entity recognition, modeling topic relations with the help of named entities provides a strong base for collaboration. 
+
+Yet another way to relate articles to each other is through an author network, as described in \cite{rosenauthor2004}. It is common that authors for newspapers are specialists and thus only work on specific topics, e.g., economy, sports, or the stock market. By establishing an author network it will be possible to find authors who wrote on the same topic in different newspapers, or simply to find all the articles about a specific topic a journalist has written. 
+
+\subsection{Multilingual data}
+In the course of this research project, we will also work with parallel data, that is newspapers, periodicals, and other publications which are translated from one language into at least one other language. Once we apply topic modeling to multilingual data, we are able to cluster events, classify documents, become engaged in cross-lingual semantic similarity of words, as well as in cross-lingual information retrieval, as \citeA{vulicprobabilistic2015} point out. They further remark that the majority of multilingual topic modeling techniques relies on standard LDA, LSA, and pLSA, all of which appear to be fairly common and widely used for topic modeling anyway \cite{dumaisautomatic1997,mimnopolylingual2009,zhangcrosslingual2010,nicross2011}. Prerequisites for multilingual topic modeling are good sentence and word alignments, as well as an appropriate set of latent cross-lingual topics.
+
+Since the data with which we will experiment stems from various sources, one big challenge will be to find one (or maybe multiple) sets of latent cross-lingual topics.  ...
+
+\subsection{The influence of time}
+\label{timeinfluence}
+One of the most useful tools for historians is the tracking of one or several topics over time. For this purpose \citeA{newmanprobabilistic2006} split their text corpus into decades and calculate the topics using different techniques like pLSA, LSA, and \textit{k}-means clustering in order to be able to compare which topics emerge in which periods.
+
+Since time is continuous by its definition, it can be challenging to discretise it. For this reason \citeA{wangtopics2006} suggest a model called ``Topics over Time'' which models the absolute time stamp of each document. In this vein, it associates a continuous distribution over time for each topic. While the topics in ``Topics over Time'' models are constant, \citeA{wangcontinuous2012} seek to infer evolving topics, which asks for a more dynamic approach, for which they introduce Brownian motion. 
+
+\section{Research Project Plan}
+Table \ref{researchplan} presents a detailed version of the research project plan.
+\begin{table}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|llcllllcllllcll|}
+\cline{2-16}
+ & \multicolumn{3}{c|}{\textbf{2017}} & \multicolumn{5}{c|}{\textbf{2018}} & \multicolumn{5}{c|}{\textbf{2019}} & \multicolumn{2}{c|}{\textbf{2020}} \\ \cline{2-16} 
+ & \multicolumn{1}{l|}{\textbf{Sep-Nov}} & \multicolumn{2}{l|}{\textbf{Dec-Feb}} & \multicolumn{1}{l|}{\textbf{Mar-May}} & \multicolumn{1}{l|}{\textbf{Jun-Aug}} & \multicolumn{1}{l|}{\textbf{Sep-Nov}} & \multicolumn{2}{l|}{\textbf{Dec-Feb}} & \multicolumn{1}{l|}{\textbf{Mar-May}} & \multicolumn{1}{l|}{\textbf{Jun-Aug}} & \multicolumn{1}{l|}{\textbf{Sep-Nov}} & \multicolumn{2}{l|}{\textbf{Dec-Feb}} & \multicolumn{1}{l|}{\textbf{Mar-May}} & \textbf{Jun-Aug} \\ \cline{2-16} 
+\textbf{Preparation} &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  \\
+Literature review & \cellcolor[HTML]{3166FF} & \multicolumn{2}{l}{\cellcolor[HTML]{3166FF}} & \cellcolor[HTML]{ECF4FF} & \cellcolor[HTML]{ECF4FF} & \cellcolor[HTML]{ECF4FF} & \multicolumn{2}{l}{\cellcolor[HTML]{ECF4FF}} & \cellcolor[HTML]{ECF4FF} & \cellcolor[HTML]{ECF4FF} & \cellcolor[HTML]{ECF4FF} & \multicolumn{2}{l}{\cellcolor[HTML]{ECF4FF}} & \cellcolor[HTML]{ECF4FF} &  \\
+Investigate/Implement current methods & \cellcolor[HTML]{3166FF} & \multicolumn{2}{l}{\cellcolor[HTML]{3166FF}} &  &  &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  \\
+\textbf{Research Tasks} &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  \\
+Topic modeling with word embeddings &  & \multicolumn{2}{l}{} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  \\
+Topic modeling with deep learning &  & \multicolumn{2}{l}{} &  &  & \cellcolor[HTML]{34FF34} & \multicolumn{2}{l}{\cellcolor[HTML]{34FF34}} &  &  &  & \multicolumn{2}{l}{} &  &  \\
+Relational topic modeling &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} &  & \multicolumn{2}{l}{} &  &  \\
+Cross-linguistic topic modeling &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  & \cellcolor[HTML]{34FF34} & \multicolumn{2}{l}{\cellcolor[HTML]{34FF34}} & \cellcolor[HTML]{34FF34} &  \\
+Historical/Dynamic Topic Modeling & & & & & \cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} &\cellcolor[HTML]{34FF34} & \\
+\textbf{Milestones} &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  \\
+Paper drafts &  & \multicolumn{2}{c}{} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{X}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{X}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{X}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{X}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c|}{} \\
+Annual reports &  & \multicolumn{2}{l}{} &  &  & \textbf{X} & \multicolumn{2}{l}{} &  &  & \textbf{X} & \multicolumn{2}{l}{} &  &  \\
+Dissertation compilation &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} &  &  &  & \multicolumn{2}{l}{} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \cline{2-16} 
+\end{tabular}%
+}
+\caption{Research Project Plan: An overview of the research program proposed.}
+\label{researchplan}
+\end{table}
+
+\section{Research Project Details}
+
+\paragraph{Research Project Communication and Deliverables:}
+The majority of the outputs of this research plan will be published in journals and at conferences (see the research project plan in Table \ref{researchplan}). The aim is to publish at A-level conferences or in A-level journals. The following deliverables can be defined (non-exhaustive list):
+
+\begin{itemize}
+	\item Topic model of newspaper articles which can be integrated in the search engine which will be realised within the Sinergia project
+	\item Software to apply (historical) topic modeling on multilingual text collections.
+	\item Software relying on relational topic modeling to build a document network.
+\end{itemize}
+
+\paragraph{Data Management:}
+As detailed in the Sinergia proposal, the EPFL will be responsible for the management of the data. Where licensing permits, the candidate will make new data sets and tools available through his website and/or Github. In addition, we will also release the data set, both in normalised an enriched versions.
+
+\paragraph*{Skills Audit:}
+A skills audit for the skills required in this project is shown in Table \ref{skillsaudit}.
+
+\begin{table}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Professional and Research Skills}} & \multicolumn{4}{c|}{Rating} & \multicolumn{1}{l|}{\multirow{2}{*}{Evidence}} & \multicolumn{1}{l|}{\multirow{2}{*}{Plan for acquisition}} \\ \cline{2-5}
+\multicolumn{1}{|l|}{} & none & basic & competent & proficient & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Understanding of mathematics\\ required for this area\\ (Probability, Linear Algebra,\\ Calculus)\end{tabular} &  & X &  &  & \begin{tabular}[c]{@{}c@{}}Completion of introductory\\ calculus course\end{tabular} & \begin{tabular}[c]{@{}c@{}}Aim must be to move\\ to competent. Taking\\ self-study courses\\ on Coursera or edX.\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Using of programming languages\\ for this project (Python,\\ probably Scala)\end{tabular} &  &  & X &  & \begin{tabular}[c]{@{}c@{}}Completion of programming\\ courses related to\\ Computational Linguistics,\\ plus additional self-tuition\end{tabular} & No action required \\ \hline
+\begin{tabular}[c]{@{}c@{}}Knowledge and\\ understanding of\\ topic modeling\end{tabular} &  & X &  &  & Introductory MA course & \begin{tabular}[c]{@{}c@{}}Read up on recent\\ literature, aim must\\ be proficient (by the\\ end of this research\\ project)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Knowledge and\\ understanding of\\ machine learning\end{tabular} &  & X &  &  & Introductory MA course & \begin{tabular}[c]{@{}c@{}}Take a machine\\ learning course (UZH,\\ ETH, or self-tuition).\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Knowledge and\\ understanding of\\ deep learning\end{tabular} &  & X &  &  & Participation in Reading Group & \begin{tabular}[c]{@{}c@{}}Take a deep\\ learning course (ETH)\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Understanding and \\ application of data\\ collection and\\ analysis methods\end{tabular} &  &  & X &  & \begin{tabular}[c]{@{}c@{}}Participation in Text+Berg\\ and Bulletin4Corpus projects\end{tabular} & No action required. \\ \hline
+\end{tabular}%
+}
+\caption{Skills audit}
+\label{skillsaudit}
+\end{table}
+
+\section{Research Training}
+The research training plan in the following subsection serves as an overview on planned activities in order to obtain the required ECTS (12 in total). The plan is to fulfil this requirement as early as possible, such that in the following, the focus is on the research plan itself.
+
+\subsection{Research Training Plan}
+The research training plan with the planned activities I plan for my PhD research follows in Table \ref{researchtraining}.
+
+\begin{table}
+\label{researchtraining}
+\centering
+\begin{tabular}{|l|l|c|c|}
+\hline
+Date       & Activity                                                                                                   & \multicolumn{1}{l|}{Training} & \multicolumn{1}{l|}{Milestone} \\ \hline
+15/08/2017 & Research Proposal                                                                                          & \multicolumn{1}{l|}{}         & X                              \\ \hline
+01/09/2017 & Start of the project                                                                                       &                               &                                \\ \hline
+19/09/2017 & Kolloquium (3 ECTS)                                                                                        & X                             & \multicolumn{1}{l|}{}          \\ \hline
+25/09/2017 & Deep Learning course ETH (4 ECTS)                                                                          & X                             &                                \\ \hline
+05/10/2017 & \begin{tabular}[c]{@{}l@{}}Publish or perish: Designing\\ research for publication (1 ECTS)\end{tabular}   & X                             &                                \\ \hline
+06/11/2017 & \begin{tabular}[c]{@{}l@{}}Scientific publication: discover, manage\\ \& disseminate (1 ECTS)\end{tabular} & X                             & \multicolumn{1}{l|}{}          \\ \hline
+28/11/2017 & \begin{tabular}[c]{@{}l@{}}Resource-focused stress\\ management (1 ECTS)\end{tabular}                      & X                             &                                \\ \hline
+SS18       & GRC course 1 (1 ECTS)                                                                                      & X                             &                                \\ \hline
+SS18       & GRC course 2 (1 ECTS)                                                                                      & X                             &                                \\ \hline
+01/03/2018 & \begin{tabular}[c]{@{}l@{}}Confirmation of candidature\\ (Doktoratsvereinbarung)\end{tabular}              &                               & X                              \\ \hline
+01/09/2018 & Annual report year 1                                                                                       & \multicolumn{1}{l|}{}         & X                              \\ \hline
+01/09/2019 & Annual report year 2                                                                                       & \multicolumn{1}{l|}{}         & X                              \\ \hline
+01/03/2020 & Dissertation draft                                                                                         & \multicolumn{1}{l|}{}         & X                              \\ \hline
+01/09/2020 & Dissertation submitted for examination                                                                     & \multicolumn{1}{l|}{}         & X                              \\ \hline
+\end{tabular}
+\caption{Research training plan: planned activities}
+\end{table}
+
+\subsection{Working Hours}
+The candidate dedicates 100\% of his working hours (25.2 hours per week) within this proposed research program. The supervision of BA or MA projects, as well as the tutoring of lectures or seminars are possible, but restricted to one supervision/teaching assistant post per semester.
+
+\section{Supervision}
+
+\paragraph{Principal \& Coordinating Supervisor: Prof.~Dr.~Martin Volk}
+
+\begin{itemize}
+	\item Directing overall research program
+	\item Review research outputs
+	\item Provide regular feedback, on both overall, and current subproject progress
+\end{itemize}
+
+\paragraph{Co-Supervisor: Dr.~Simon Clematide}
+
+\begin{itemize}
+	\item Supervise overall research program
+	\item Provide expertise in text mining (especiall topic modeling) and deep learning techniques
+	\item Provide regular feedback, on both overall, and current subproject process
+\end{itemize}
