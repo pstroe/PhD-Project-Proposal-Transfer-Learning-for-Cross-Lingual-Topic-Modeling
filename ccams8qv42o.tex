@@ -54,10 +54,10 @@ Although it is not possible to tackle all the issues described above in this res
 
 \paragraph{OCR errors} This belongs to the preprocessing step of the data and I see clean data as a prerequisite for good topic models. Current research conducted at our institute show that Handwritten Text Recognition models which can be trained within the Transkribus\footnote{https://transkribus.eu/Transkribus/} outperform state-of-the-art software like ABBYY FineReader\footnote{https://www.abbyy.com/en-us/} by a large margin, reaching between 95\%  and 98\% in terms of F1-measure. The results are promising and have even lead the archive team of the Neue Zürcher Zeitung, for which we only have low quality OCR, to consider a complete redigitisation from paper sources.
 
-\paragraph{Topic modeling} The main work of this dissertation will be concerned with topic modeling. To this end, I establish three working hypothesis:
+\paragraph{Topic modeling} The main work of this dissertation will be concerned with topic modeling. I expect a similar topic distribution across different newspapersTo this end, I establish three working hypothesis:
 
 \begin{enumerate}
-    \item I expect a similar topic distribution across different newspapers, mainly for two reasons: firstly, coarse grained categories like ``Sports'' or ``Economics'' will be present in all newspapers. The topic distribution within those categories could vary, depending on the region and/or country. Secondly, since newspapers follow the same time line, they are likely to report the same events. Again, there might be regional or country-specific differences. 
+    \item , mainly for two reasons: firstly, coarse grained categories like ``Sports'' or ``Economics'' will be present in all newspapers. The topic distribution within those categories could vary, depending on the region and/or country. Secondly, since newspapers follow the same time line, they are likely to report the same events. Again, there might be regional or country-specific differences. 
 \end{enumerate}
 Depending on the number of topics to be inferred, one working hypothesis would be that a topic model would be able to identify these coarse grained categories. Moreover, another working hypothesis is that categories do not deviate too much across different newspapers, no matter what language they are published in. This already suggests a transfer learning approach, which would try to map topics from a newspaper published in language $S$ to a newspaper published in language $T$.
 
