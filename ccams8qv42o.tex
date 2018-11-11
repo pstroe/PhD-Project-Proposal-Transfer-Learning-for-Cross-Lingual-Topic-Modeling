@@ -47,7 +47,7 @@ Topic modeling helps in finding inherent structures in the text. However, applyi
     \item The choice about the number of topics determines how fine or coarse grained a search in a newspaper can be. The number of topics one want to look at thus directly depends on the researcher working with the texts. 
     \item When working with collections which contain newspapers in different languages, we would need to train a topic model for each language, which again is very costly.
     \item Although not restricted to the digital humanities, there are no concrete measures to assess the quality of topic models. What is commonly done is measuring the model perplexity, which does not say anything about the quality of the inferred topics.
-    \item Topic models are not able to capture the emergence of new topics and the vanishing of exis over time, although dynamic o
+    \item Topic models are not able to capture the emergence of new topics and the vanishing of existing topics over time, although dynamic topic modeling tries to model topic 
 \end{enumerate}
 
 Depending on the number of topics to be inferred, one working hypothesis would be that a topic model would be able to identify these coarse grained categories. Moreover, another working hypothesis is that categories do not deviate too much across different newspapers, no matter what language they are published in. This already suggests a transfer learning approach, which would try to map topics from a newspaper published in language $S$ to a newspaper published in language $T$.
