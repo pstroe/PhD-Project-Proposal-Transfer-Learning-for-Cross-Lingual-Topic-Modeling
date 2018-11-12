@@ -51,7 +51,7 @@ Topic modeling helps in finding such inherent structures in the text. However, a
 
 \begin{enumerate}
     \item Errors from Optical Character Recognition (OCR) directly influence the results. There are either topics which are dominated by them, or they distort the word distributions in a way that they pretend to characterise a topic.
-    \item Most topic modeling algorithms require a parameter for the number of topics to be inferred from the text. The number of topics can vary from one newspaper to another. This would require us to train a topic model for each newspaper in the collection, which is a time consuming undertaking, since newspapers comprise billions of words (the NZZ alone contains about )
+    \item Most topic modeling algorithms require a parameter for the number of topics to be inferred from the text. The number of topics can vary from one newspaper to another. This would require us to train a topic model for each newspaper in the collection, which is a time consuming undertaking, since newspapers comprise billions of words (the NZZ alone contains about 4 billion words from 1780 to 2015)
     \item The choice about the number of topics determines how fine or coarse grained a search in a newspaper can be. The number of topics one wants to look at thus directly depends on the researcher working with the texts. 
     \item When working with collections which contain newspapers in different languages, we would need to train a topic model for each language, which again is very costly.
     \item Although not restricted to the digital humanities, there are no concrete measures to assess the quality of topic models. What is commonly done is measuring the model perplexity, which does not say anything about the quality of the inferred topics.
